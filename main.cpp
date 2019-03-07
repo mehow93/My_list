@@ -12,6 +12,7 @@ public:
     };
     List() :HEAD{nullptr}, size_{0} {}
     void push(int val);
+    void pop();
     int getSize(){return size_;}
     void show();
 private:
@@ -19,7 +20,7 @@ private:
   int size_ =0;
 };
 
-void List::push(int val){
+void List::push(int val){ // push values
     Node* pNode =HEAD;
     if(pNode != nullptr)
     {
@@ -34,7 +35,29 @@ void List::push(int val){
     }
     size_++;
 }
-void List::show(){
+void List::pop(){ // pop values
+
+    if(HEAD != nullptr){
+      if(size_ == 1){ // jeden el.
+          delete HEAD;
+          HEAD= nullptr;
+      }
+
+    else{ // wincyj ele
+        Node* pNode = HEAD, *pPrev = nullptr;
+        while(pNode->pNext != nullptr)
+        {
+            pPrev = pNode;
+            pNode = pNode->pNext;
+        }
+        delete(pNode);
+        pPrev->pNext = nullptr;
+    }
+      size_ --;
+}
+}
+
+void List::show(){ // show function
     Node* pNode = HEAD;
     while(pNode!= nullptr)
     {
@@ -49,9 +72,14 @@ int main()
      l1.push(13);
      l1.push(23);
      l1.push(34);
-      l1.push(4);
-       l1.push(314);
+     l1.push(4);
+     l1.push(314);
      l1.show();
     cout << l1.getSize() << endl;
+    l1.pop();
+    l1.pop();
+    l1.pop();
+    l1.show();
+   cout << l1.getSize() << endl;
     return 0;
 }
