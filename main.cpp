@@ -21,7 +21,7 @@ private:
   int size_ =0;
 };
 
-void List::push_back(int val){ // putting new values to stack
+void List::push_back(int val){ // putting new values to stack at top of it
     Node* pNode =HEAD;
     if(pNode != nullptr)
     {
@@ -36,7 +36,7 @@ void List::push_back(int val){ // putting new values to stack
     }
     size_++;
 }
-void List::pop_back(){ // pop values
+void List::pop_back(){ // pop values from top
 
     if(HEAD != nullptr){
       if(size_ == 1){ // jeden el.
@@ -68,17 +68,18 @@ void List::show(){ // show function
 
 }
 void List::push_front(int val){
-
+   HEAD = new Node (val, HEAD);
+   size_ ++;
 }
 int main()
 {
     List l1;
-     l1.push_back(13);
-    l1.show();
-    l1.pop_back();
-    l1.pop_back();
-    l1.push_back(34);
-    l1.show();
+   l1.push_front(23);
+   l1.push_front(12);
+   l1.push_front(2);
+   l1.pop_back();
+   l1.show();
+   cout<<l1.getSize()<<endl;
 
 
     return 0;
