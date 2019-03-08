@@ -20,7 +20,7 @@ private:
   int size_ =0;
 };
 
-void List::push(int val){ // push values
+void List::push(int val){ // putting new values to stack
     Node* pNode =HEAD;
     if(pNode != nullptr)
     {
@@ -70,16 +70,12 @@ int main()
 {
     List l1;
      l1.push(13);
-     l1.push(23);
-     l1.push(34);
-     l1.push(4);
-     l1.push(314);
-     l1.show();
-    cout << l1.getSize() << endl;
-    l1.pop();
-    l1.pop();
-    l1.pop();
     l1.show();
-   cout << l1.getSize() << endl;
+    l1.pop();
+    l1.pop();
+    l1.push(34);
+    l1.show();
+
+
     return 0;
 }
