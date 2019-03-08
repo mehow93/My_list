@@ -14,6 +14,7 @@ public:
     void push_back(int val);
     void push_front(int val);
     void pop_back();
+    void pop_front();
     int getSize(){return size_;}
     void show();
 private:
@@ -71,16 +72,28 @@ void List::push_front(int val){
    HEAD = new Node (val, HEAD);
    size_ ++;
 }
+
+void List:: pop_front(){
+    if(HEAD != nullptr){
+    Node* pNode = HEAD;
+    HEAD = HEAD->pNext;
+    delete(pNode);
+    size_--;
+    }
+
+}
 int main()
 {
     List l1;
-   l1.push_front(23);
-   l1.push_front(12);
-   l1.push_front(2);
-   l1.pop_back();
-   l1.show();
-   cout<<l1.getSize()<<endl;
-
+l1.pop_front();
+l1.push_front(1);
+l1.push_back(2);
+l1.push_front(5);
+l1.show();
+cout<<"rozmiar: "<<l1.getSize()<<endl;
+l1.pop_front();
+l1.show();
+cout<<"rozmiar: "<<l1.getSize()<<endl;
 
     return 0;
 }
