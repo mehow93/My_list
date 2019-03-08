@@ -11,8 +11,9 @@ public:
 
     };
     List() :HEAD{nullptr}, size_{0} {}
+    void push_back(int val);
     void push_front(int val);
-    void pop_front();
+    void pop_back();
     int getSize(){return size_;}
     void show();
 private:
@@ -20,7 +21,7 @@ private:
   int size_ =0;
 };
 
-void List::push_front(int val){ // putting new values to stack
+void List::push_back(int val){ // putting new values to stack
     Node* pNode =HEAD;
     if(pNode != nullptr)
     {
@@ -35,7 +36,7 @@ void List::push_front(int val){ // putting new values to stack
     }
     size_++;
 }
-void List::pop_front(){ // pop values
+void List::pop_back(){ // pop values
 
     if(HEAD != nullptr){
       if(size_ == 1){ // jeden el.
@@ -66,14 +67,17 @@ void List::show(){ // show function
     }
 
 }
+void List::push_front(int val){
+
+}
 int main()
 {
     List l1;
-     l1.push_front(13);
+     l1.push_back(13);
     l1.show();
-    l1.pop_front();
-    l1.pop_front();
-    l1.push_front(34);
+    l1.pop_back();
+    l1.pop_back();
+    l1.push_back(34);
     l1.show();
 
 
