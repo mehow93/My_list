@@ -17,6 +17,8 @@ public:
     void pop_front();
     int getSize(){return size_;}
     void show();
+    void reverse();
+    double peak();
 private:
   Node* HEAD = nullptr;
   int size_ =0;
@@ -82,18 +84,29 @@ void List:: pop_front(){
     }
 
 }
+void List:: reverse(){
+
+}
+double List::peak(){
+    Node* pNode = HEAD;
+    while(pNode->pNext != nullptr)
+    {
+        pNode = pNode->pNext;
+    }
+    return(pNode->var);
+}
 int main()
 {
     List l1;
-l1.pop_front();
-l1.push_front(1);
-l1.push_back(2);
-l1.push_front(5);
-l1.show();
-cout<<"rozmiar: "<<l1.getSize()<<endl;
-l1.pop_front();
-l1.show();
-cout<<"rozmiar: "<<l1.getSize()<<endl;
+    l1.push_back(1);
+    l1.push_back(5);
+    l1.push_back(3);
+    l1.pop_back();
+
+     l1.show();
+    cout<<"rozmiar: "<<l1.getSize()<<endl;
+    cout<<"Top vlaue: "<<l1.peak()<<endl;
+
 
     return 0;
 }
