@@ -11,6 +11,7 @@ public:
         Node (int val, Node* pb, Node* pn ) : var{val}, pBefore{pb}, pNext{pn} {}};
     List() :HEAD{nullptr}, size_{0} {}
     void push_back(int val);
+    void push_front(int val);
     void show();
     int get_size(){return size_;}
 
@@ -36,6 +37,25 @@ void List::push_back(int val){// pushing new values to end of list
     size_++;
 }
 
+void List::push_front(int val){ // pushing values to front of list
+    Node *pNode = HEAD;
+    if(pNode != nullptr)
+    {
+        while(pNode->pBefore != nullptr)
+        {
+            pNode = pNode->pBefore;
+        }
+        pNode->pBefore = new Node(val,nullptr,pNode);
+        HEAD = pNode->pBefore;
+    }
+    else
+    {
+        HEAD = new Node(val,nullptr,nullptr);
+    }
+    size_++;
+
+
+}
 void List::show(){
     Node *pNode = HEAD;
     while(pNode != nullptr)
@@ -52,6 +72,8 @@ int main()
      l1.push_back(3);
      l1.push_back(4);
      l1.push_back(12);
+     l1.push_front(23);
+     l1.push_front(12);
      cout << l1.get_size()<<endl;
      l1.show();
 
