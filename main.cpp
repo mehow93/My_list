@@ -12,6 +12,8 @@ public:
     List() :HEAD{nullptr}, size_{0} {}
     void push_back(int val);
     void push_front(int val);
+    void pop_back();
+    void pop_front();
     void show();
     int get_size(){return size_;}
 
@@ -56,6 +58,54 @@ void List::push_front(int val){ // pushing values to front of list
 
 
 }
+void List::pop_back(){ // poping node from end of list
+
+    if(HEAD != nullptr)
+    {
+        if(size_ == 1){ // only HEAD
+            delete(HEAD);
+            HEAD = nullptr;
+        }
+
+
+    else // more nodes
+    {
+        Node *pNode = HEAD;
+        Node *pPrev =nullptr;
+
+        while(pNode->pNext != nullptr)
+        {
+            pPrev = pNode;
+            pNode = pNode->pNext;
+        }
+        delete(pNode);
+        pPrev->pNext = nullptr;
+
+    }
+         size_--;
+    }
+
+}
+void List::pop_front(){ //poping nodes from front
+    if(HEAD != nullptr)
+    {
+        if(size_ == 1){ // only HEAD
+            delete(HEAD);
+            HEAD = nullptr;
+        }
+
+
+    else // more nodes
+    {
+        Node *pNode = HEAD;
+        HEAD = HEAD->pNext;
+        delete(pNode);
+
+
+    }
+         size_--;
+    }
+}
 void List::show(){
     Node *pNode = HEAD;
     while(pNode != nullptr)
@@ -69,14 +119,11 @@ void List::show(){
 int main()
 {
      List l1;
-     l1.push_back(3);
-     l1.push_back(4);
-     l1.push_back(12);
-     l1.push_front(23);
-     l1.push_front(12);
-     cout << l1.get_size()<<endl;
+     l1.push_front(34);
+     l1.pop_front();
+     l1.pop_front();
      l1.show();
-
+     cout << l1.get_size()<<endl;
 
 
     return 0;
