@@ -85,7 +85,17 @@ void List:: pop_front(){
 
 }
 void List:: reverse(){
+    Node *pPrevNode = nullptr, *pNode = HEAD, *pNextNode;
+        while (pNode != nullptr) {
+            // swap/reconnect
+            pNextNode = pNode->pNext;
+            pNode->pNext = pPrevNode;
 
+            // move to the next node
+            pPrevNode = pNode;
+            pNode = pNextNode;
+        }
+    HEAD = pPrevNode;
 }
 double List::peak(){
     Node* pNode = HEAD;
@@ -99,13 +109,13 @@ int main()
 {
     List l1;
     l1.push_back(1);
-    l1.push_back(5);
+    l1.push_back(2);
     l1.push_back(3);
-    l1.pop_back();
+    l1.show();
+    l1.reverse();
+    l1.show();
 
-     l1.show();
-    cout<<"rozmiar: "<<l1.getSize()<<endl;
-    cout<<"Top vlaue: "<<l1.peak()<<endl;
+
 
 
     return 0;
