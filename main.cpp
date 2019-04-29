@@ -14,7 +14,9 @@ public:
     void push_front(int val);
     void pop_back();
     void pop_front();
+    void reverse();
     void show();
+    void show_backward();
     int get_size(){return size_;}
 
 private:
@@ -68,21 +70,21 @@ void List::pop_back(){ // poping node from end of list
         }
 
 
-    else // more nodes
-    {
-        Node *pNode = HEAD;
-        Node *pPrev =nullptr;
-
-        while(pNode->pNext != nullptr)
+        else // more nodes
         {
-            pPrev = pNode;
-            pNode = pNode->pNext;
-        }
-        delete(pNode);
-        pPrev->pNext = nullptr;
+            Node *pNode = HEAD;
+            Node *pPrev =nullptr;
 
-    }
-         size_--;
+            while(pNode->pNext != nullptr)
+            {
+                pPrev = pNode;
+                pNode = pNode->pNext;
+            }
+            delete(pNode);
+            pPrev->pNext = nullptr;
+
+        }
+        size_--;
     }
 
 }
@@ -95,16 +97,29 @@ void List::pop_front(){ //poping nodes from front
         }
 
 
-    else // more nodes
+        else // more nodes
+        {
+            Node *pNode = HEAD;
+            HEAD = HEAD->pNext;
+            delete(pNode);
+
+
+        }
+        size_--;
+    }
+}
+void List::reverse(){
+
+    Node *pNode = HEAD, *pNextNode, *pPrevNode = nullptr;
+    while(pNode != nullptr)
     {
-        Node *pNode = HEAD;
-        HEAD = HEAD->pNext;
-        delete(pNode);
+        pNextNode = pNode->pNext;
+        pNode->pNext = pPrevNode;
 
-
+        pPrevNode = pNode;
+        pNode = pNextNode;
     }
-         size_--;
-    }
+    HEAD = pPrevNode;
 }
 void List::show(){
     Node *pNode = HEAD;
@@ -115,15 +130,37 @@ void List::show(){
     }
 
 }
+void List::show_backward(){
+    Node *pNode = HEAD;
+    if (pNode == nullptr)
+        return;
 
+    while(pNode->pNext != nullptr) // setting pointer to the last node
+    {
+        pNode = pNode->pNext;
+    }
+
+    while(pNode != nullptr)
+    {
+        cout << "The value is: "<<pNode->var <<endl;
+        pNode = pNode->pBefore;
+    }
+
+}
 int main()
 {
-     List l1;
-     l1.push_front(34);
-     l1.pop_front();
-     l1.pop_front();
-     l1.show();
-     cout << l1.get_size()<<endl;
+    List l1;
+    l1.push_front(34);
+    l1.push_front(22);
+    l1.push_front(11);
+    l1.show();
+    l1.reverse();
+    l1.show_backward();
+
+
+
+
+
 
 
     return 0;
