@@ -110,16 +110,17 @@ void List::pop_front(){ //poping nodes from front
 }
 void List::reverse(){
 
-    Node *pNode = HEAD, *pNextNode, *pPrevNode = nullptr;
+    Node *pNode = HEAD, *pTmpNode = nullptr;
     while(pNode != nullptr)
     {
-        pNextNode = pNode->pNext;
-        pNode->pNext = pPrevNode;
-
-        pPrevNode = pNode;
-        pNode = pNextNode;
+        pTmpNode = pNode->pBefore;
+        pNode->pBefore = pNode->pNext;
+        pNode->pNext = pTmpNode;
+        pNode = pNode->pBefore;
     }
-    HEAD = pPrevNode;
+    pNode = pNode->pBefore;
+    HEAD = pNode;
+
 }
 void List::show(){
     Node *pNode = HEAD;
@@ -154,8 +155,9 @@ int main()
     l1.push_front(22);
     l1.push_front(11);
     l1.show();
-    l1.reverse();
-    l1.show_backward();
+   l1.reverse();
+   l1.show();
+   // l1.show_backward();
 
 
 
