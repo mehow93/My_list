@@ -117,10 +117,14 @@ void List::reverse(){
         pNode->pBefore = pNode->pNext;
         pNode->pNext = pTmpNode;
         pNode = pNode->pBefore;
-        cout <<"penis"<<endl;
+
+    }
+    if(pTmpNode == nullptr)
+        HEAD = pNode;
+    else {
+        HEAD = pTmpNode->pBefore;
     }
 
-    HEAD = pTmpNode->pBefore;
 
 }
 void List::show(){
@@ -152,13 +156,11 @@ void List::show_backward(){
 int main()
 {
     List l1;
-    l1.push_front(34);
-    l1.push_front(22);
-    l1.push_front(11);
+
     l1.show();
-   l1.reverse();
-   l1.show();
-   // l1.show_backward();
+    l1.reverse();
+    l1.show();
+
 
 
 
