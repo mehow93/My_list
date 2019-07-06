@@ -117,9 +117,10 @@ void List::reverse(){
         pNode->pBefore = pNode->pNext;
         pNode->pNext = pTmpNode;
         pNode = pNode->pBefore;
+        cout <<"penis"<<endl;
     }
-    pNode = pNode->pBefore;
-    HEAD = pNode;
+
+    HEAD = pTmpNode->pBefore;
 
 }
 void List::show(){
