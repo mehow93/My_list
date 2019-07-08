@@ -12,6 +12,7 @@ public:
     List() :HEAD{nullptr}, size_{0} {}
     void push_back(int val);
     void push_front(int val);
+    void push_after_x(int val, int position);
     void pop_back();
     void pop_front();
     void reverse();
@@ -59,6 +60,34 @@ void List::push_front(int val){ // pushing values to front of list
     size_++;
 
 
+}
+void List:: push_after_x(int val, int position){
+    Node *pNode = HEAD, *pNextNode;
+    if(pNode != nullptr)
+    {
+        cout<<"pierwszy if"<<endl;
+        if(0 <= position < size_)
+        {
+            cout <<"drugi if"<<endl;
+            for(int i=0; i < position; i++)
+            {
+                pNode = pNode -> pNext;
+            }
+         pNextNode = pNode->pNext;
+         pNode->pNext = new Node(val,pNode,pNextNode);
+
+        }
+        else
+        {
+            cout <<"invalid variable!"<<endl;
+        }
+    }
+    else
+    {
+        HEAD = new Node(val,nullptr,nullptr);
+    }
+    size_++;
+    
 }
 void List::pop_back(){ // poping node from end of list
 
@@ -155,13 +184,15 @@ void List::show_backward(){
 }
 int main()
 {
+    cout << "Hello world\n" <<endl;
     List l1;
-
+    l1.push_back(22);
+    l1.push_back(33);
+    l1.push_back(44);
+    cout << l1.get_size() <<endl;
+    l1.push_after_x(55,3);
+    cout << l1.get_size() <<endl;
     l1.show();
-    l1.reverse();
-    l1.show();
-
-
 
 
 
