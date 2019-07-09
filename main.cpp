@@ -65,16 +65,19 @@ void List:: push_after_x(int val, int position){
     Node *pNode = HEAD, *pNextNode;
     if(pNode != nullptr)
     {
-        cout<<"pierwszy if"<<endl;
-        if(0 <= position < size_)
+
+        if(position >= 0 && position < size_)
         {
-            cout <<"drugi if"<<endl;
+
             for(int i=0; i < position; i++)
             {
                 pNode = pNode -> pNext;
             }
+
          pNextNode = pNode->pNext;
          pNode->pNext = new Node(val,pNode,pNextNode);
+         pNextNode->pBefore = pNode->pNext;
+         size_++;
 
         }
         else
@@ -85,8 +88,9 @@ void List:: push_after_x(int val, int position){
     else
     {
         HEAD = new Node(val,nullptr,nullptr);
+        size_++;
     }
-    size_++;
+
     
 }
 void List::pop_back(){ // poping node from end of list
@@ -186,14 +190,8 @@ int main()
 {
     cout << "Hello world\n" <<endl;
     List l1;
-    l1.push_back(22);
-    l1.push_back(33);
-    l1.push_back(44);
-    cout << l1.get_size() <<endl;
-    l1.push_after_x(55,3);
-    cout << l1.get_size() <<endl;
+    l1.push_after_x(5,);
     l1.show();
-
 
 
 
