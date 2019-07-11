@@ -66,29 +66,30 @@ void List:: push_after_x(int val, int position){
     if(pNode != nullptr)
     {
 
-        if(position >= 0 && position < size_)
+        if(position >= 0 && position <= size_-2)
         {
+
 
             for(int i=0; i < position; i++)
             {
-                pNode = pNode -> pNext;
+                pNode = pNode->pNext;
             }
 
-         pNextNode = pNode->pNext;
-         pNode->pNext = new Node(val,pNode,pNextNode);
-         pNextNode->pBefore = pNode->pNext;
-         size_++;
+            pNextNode = pNode->pNext;
+            pNode->pNext = new Node(val,pNode,pNextNode);
+            pNextNode->pBefore = pNode->pNext;
+            size_++;
+
 
         }
         else
         {
-            cout <<"invalid variable!"<<endl;
+            cout <<"invalid position!"<<endl;
         }
     }
     else
     {
-        HEAD = new Node(val,nullptr,nullptr);
-        size_++;
+        cout <<"There is no head!"<<endl;
     }
 
     
@@ -190,9 +191,16 @@ int main()
 {
     cout << "Hello world\n" <<endl;
     List l1;
-    l1.push_after_x(5,);
-    l1.show();
+    l1.push_back(5);
+    l1.push_back(80);
+    l1.push_front(77);
+    l1.push_back(28);
+    l1.push_after_x(15,1);
 
+    l1.show();
+    cout<<"and now"<<endl;
+    l1.pop_back();
+    l1.show_backward();
 
 
 
